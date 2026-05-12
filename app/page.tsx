@@ -47,7 +47,7 @@ const pad = (n: number) => String(Math.floor(n)).padStart(2, "0");
 function getCD() {
   const d = Math.max(
     0,
-    new Date("2026-06-07T11:30:00+07:00").getTime() - Date.now()
+    new Date("2026-06-07T11:00:00+07:00").getTime() - Date.now()
   );
   return {
     d: pad(d / 86400000),
@@ -841,7 +841,7 @@ function CountdownOv({ show }: { show: boolean }) {
           letterSpacing: ".08em",
         }}
       >
-        07 Juni 2026 · 11.30 WIB
+        07 Juni 2026 · 11.00 WIB
       </p>
     </Ov>
   );
@@ -937,7 +937,7 @@ function ClosingOv({ show }: { show: boolean }) {
         Lihat Galeri Foto
       </button>
 
-      <Lbl c="rgba(201,169,110,.38)">7 Juni 2026 · Jetis, Gunung Kidul</Lbl>
+      <Lbl c="rgba(201,169,110,.38)">7 Juni 2026</Lbl>
     </Ov>
   );
 }

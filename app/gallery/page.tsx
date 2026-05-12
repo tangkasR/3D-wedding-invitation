@@ -821,7 +821,7 @@ export default function GalleryPage() {
             <p className="gal-foot-nm">
               Ais <em>&amp;</em> Tangkas
             </p>
-            <p className="gal-foot-dt">07 Juni 2026 · Jetis, Gunung Kidul</p>
+            <p className="gal-foot-dt">07 Juni 2026</p>
             <div className="gal-foot-sh" />
           </footer>
         </div>

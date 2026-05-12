@@ -5,7 +5,7 @@ import MusicPlayer from "./components/MusicPlayer";
 export const metadata: Metadata = {
   title: "Ais & Tangkas – Wedding Invitation",
   description:
-    "Undangan Pernikahan Puspitalia Dwi Aisah & Tangkas Risdianto · 7 Juni 2026 · Jetis, Gunung Kidul",
+    "Undangan Pernikahan Puspitalia Dwi Aisah & Tangkas Risdianto · 7 Juni 2026",
 };
 export const viewport: Viewport = {
   width: "device-width",
