@@ -1764,22 +1764,6 @@ function Opening({ onOpen }: { onOpen: () => void }) {
         >
           Buka Undangan
         </button>
-
-        {/* scroll hint */}
-        <p
-          style={{
-            fontSize: ".52rem",
-            letterSpacing: ".3em",
-            textTransform: "uppercase",
-            color: "rgba(201,169,110,.3)",
-            marginTop: 18,
-            opacity: show ? 1 : 0,
-            transform: show ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity .7s .7s ease, transform .7s .7s ease",
-          }}
-        >
-          Scroll untuk menjelajahi
-        </p>
       </div>
     </div>
   );
