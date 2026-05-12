@@ -104,8 +104,8 @@ const Glass = ({
     style={{
       background: "rgba(8,6,4,.65)",
       border: "1px solid rgba(201,169,110,.22)",
-      backdropFilter: "blur(22px)",
-      WebkitBackdropFilter: "blur(22px)",
+      backdropFilter: "blur(4px)",
+      WebkitBackdropFilter: "blur(4px)",
       borderRadius: 3,
       ...style,
     }}
@@ -122,14 +122,17 @@ function Ov({
   children,
   cx = false,
   style = {},
+  classname,
 }: {
   show: boolean;
   children: React.ReactNode;
   cx?: boolean;
   style?: React.CSSProperties;
+  classname?: string;
 }) {
   return (
     <div
+      className={classname}
       style={{
         position: "fixed",
         inset: 0,
@@ -166,7 +169,7 @@ function HeroOv({ show }: { show: boolean }) {
       <h1
         style={{
           fontFamily: "'Cormorant Garamond',serif",
-          fontSize: "clamp(3.4rem,14vw,7rem)",
+
           fontWeight: 300,
           letterSpacing: ".1em",
           lineHeight: 0.95,
@@ -174,18 +177,20 @@ function HeroOv({ show }: { show: boolean }) {
           textAlign: "center",
           textShadow: TH,
         }}
+        className="text-3xl md:text-[80px]"
       >
         Ais <em style={{ fontStyle: "italic", color: GL }}>&amp;</em> Tangkas
       </h1>
       <p
         style={{
           marginTop: "1rem",
-          fontSize: ".64rem",
+          
           letterSpacing: ".42em",
           textTransform: "uppercase",
           color: G,
           textShadow: TS,
         }}
+        className="text-[8px] md:text-base"
       >
         07 · Juni · 2026 · Gunung Kidul
       </p>
@@ -230,10 +235,10 @@ function GroomOv({ show }: { show: boolean }) {
     <Ov
       show={show}
       style={{
-        alignItems: "flex-end",
         justifyContent: "center",
         padding: "0 5vw",
       }}
+      classname="items-end md:items-start"
     >
       <Glass
         style={{
@@ -293,10 +298,10 @@ function BrideOv({ show }: { show: boolean }) {
     <Ov
       show={show}
       style={{
-        alignItems: "flex-start",
         justifyContent: "center",
         padding: "0 5vw",
       }}
+      classname="items-start md:items-end"
     >
       <Glass
         style={{
@@ -613,7 +618,11 @@ function StoryOv({ show }: { show: boolean }) {
 function EventOv({ show }: { show: boolean }) {
   const [hov, setHov] = useState(false);
   return (
-    <Ov show={show} cx style={{ padding: "0 5vw", pointerEvents: show ? 'auto' : 'none' }}>
+    <Ov
+      show={show}
+      cx
+      style={{ padding: "0 5vw", pointerEvents: show ? "auto" : "none" }}
+    >
       <Glass
         style={{
           width: "100%",
@@ -845,7 +854,15 @@ function ClosingOv({ show }: { show: boolean }) {
   const [hov, setHov] = useState(false);
   const navigate = usePageTransition();
   return (
-    <Ov show={show} cx style={{ gap: 22, padding: "0 8vw", pointerEvents: show ? 'auto' : 'none' }}>
+    <Ov
+      show={show}
+      cx
+      style={{
+        gap: 22,
+        padding: "0 8vw",
+        pointerEvents: show ? "auto" : "none",
+      }}
+    >
       <Shimmer w={70} />
       <Lbl c={`${G}cc`}>Dengan penuh cinta</Lbl>
       <h2
@@ -924,31 +941,6 @@ function ClosingOv({ show }: { show: boolean }) {
     </Ov>
   );
 }
-
-/* ════════════════════════════════════════════
-   GALLERY — FULL PAGE (separate from scroll)
-════════════════════════════════════════════ */ const FILTERS = [
-  "brightness(.88) saturate(.85) sepia(.08)",
-  "brightness(.92) saturate(.9)",
-  "brightness(.85) saturate(.8) sepia(.12)",
-  "brightness(.9) saturate(.95)",
-  "brightness(.87) saturate(.82) sepia(.06)",
-  "brightness(.93) saturate(.88)",
-  "brightness(.86) saturate(.78) sepia(.14)",
-  "brightness(.91) saturate(.92)",
-  "brightness(.88) saturate(.86) sepia(.1)",
-  "brightness(.94) saturate(.9)",
-  "brightness(.85) saturate(.8)",
-  "brightness(.9) saturate(.85) sepia(.08)",
-  "brightness(.87) saturate(.9)",
-  "brightness(.92) saturate(.82)",
-  "brightness(.86) saturate(.88) sepia(.1)",
-  "brightness(.9) saturate(.94)",
-  "brightness(.88) saturate(.8) sepia(.12)",
-  "brightness(.93) saturate(.86)",
-  "brightness(.85) saturate(.9) sepia(.06)",
-  "brightness(.91) saturate(.84)",
-];
 
 /* ════════════════════════════════════════════
    PHOTO WORLD + CAMERA LERP
@@ -1030,10 +1022,10 @@ function PhotoWorld({ scene }: { scene: number }) {
         ref={worldRef}
         style={{
           position: "absolute",
-          width: "200%",
-          height: "200%",
-          top: "-50%",
-          left: "-50%",
+          width: "100%",
+          height: "100%",
+          top: "0",
+          left: "0",
           transformOrigin: "center center",
           willChange: "transform",
         }}
@@ -1041,11 +1033,10 @@ function PhotoWorld({ scene }: { scene: number }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           ref={imgRef}
-          src="/couple.jpg"
+          src="/background.png"
+          className="h-full w-full"
           alt="Ais & Tangkas"
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             display: "block",
             willChange: "filter",
@@ -1275,7 +1266,8 @@ function SnapScroller({
     // Uses elementFromPoint at touchstart to know if user tapped an interactive element.
     // document.elementFromPoint respects pointer-events CSS — returns the actual
     // clickable element, not the transparent overlay on top.
-    let ty0 = 0, tx0 = 0;
+    let ty0 = 0,
+      tx0 = 0;
     let isSwipe = false;
     let startedOnInteractive = false;
 
@@ -1288,8 +1280,11 @@ function SnapScroller({
       isSwipe = false;
       // elementFromPoint returns the topmost element that pointer-events can hit
       // This correctly finds the <a> or <button> even when parent has pointer-events:none
-      const el = document.elementFromPoint(t.clientX, t.clientY) as HTMLElement | null;
-      startedOnInteractive = !!(el?.closest(INTERACTIVE));
+      const el = document.elementFromPoint(
+        t.clientX,
+        t.clientY
+      ) as HTMLElement | null;
+      startedOnInteractive = !!el?.closest(INTERACTIVE);
     };
 
     const onTM = (e: TouchEvent) => {
@@ -1312,16 +1307,16 @@ function SnapScroller({
       if (e.key === "ArrowUp" || e.key === "PageUp") handleScroll(-1);
     };
     window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("touchstart", onTS,  { passive: true });
-    window.addEventListener("touchmove",  onTM,  { passive: true });
-    window.addEventListener("touchend",   onTE,  { passive: true });
-    window.addEventListener("keydown",    onKey);
+    window.addEventListener("touchstart", onTS, { passive: true });
+    window.addEventListener("touchmove", onTM, { passive: true });
+    window.addEventListener("touchend", onTE, { passive: true });
+    window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTS);
-      window.removeEventListener("touchmove",  onTM);
-      window.removeEventListener("touchend",   onTE);
-      window.removeEventListener("keydown",    onKey);
+      window.removeEventListener("touchmove", onTM);
+      window.removeEventListener("touchend", onTE);
+      window.removeEventListener("keydown", onKey);
     };
   }, [handleScroll]);
 

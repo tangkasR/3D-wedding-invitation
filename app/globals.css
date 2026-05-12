@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
-
+@import "tailwindcss";
+/* 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 :root {
   --gold: #C9A96E;
-  --gold-l: #F0D99A;
+  --gold-l: #887134;
   --gold-d: #8A6E3C;
   --dark: #080604;
   --cream: #FFF8EE;

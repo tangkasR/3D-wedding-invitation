@@ -8,7 +8,50 @@ import { useRouter } from "next/navigation";
 ══════════════════════════════════════════ */
 const PHOTOS = Array.from({ length: 20 }, (_, i) => ({
   id: i,
-  src: "/couple.jpg",
+  label: [
+    "Senja & Senyum",
+    "Dua Jiwa",
+    "Cahaya Sore",
+    "Kebun Mawar",
+    "Tawa Bersama",
+    "Pandangan Cinta",
+    "Di Tepi Pantai",
+    "Sebuah Janji",
+    "Berdua Saja",
+    "Ketenangan",
+    "Momen Kecil",
+    "Kasih Sayang",
+    "Hari Bahagia",
+    "Bersama Selalu",
+    "Kenangan Abadi",
+    "Perjalanan Cinta",
+    "Hangat Hati",
+    "Dua Dunia",
+    "Kisah Kita",
+    "Selamanya",
+  ][i],
+  src: [
+    "/gallery/img2.jpg",
+    "/gallery/img3.jpg",
+    "/gallery/img13.jpg",
+    "/gallery/img14.jpg",
+    "/gallery/img15.jpg",
+    "/gallery/img7.jpg",
+    "/gallery/img10.jpg",
+    "/gallery/img8.jpg",
+    "/gallery/img9.jpg",
+    "/gallery/img11.jpg",
+    "/gallery/img12.jpg",
+    "/gallery/img16.jpg",
+    "/gallery/img17.jpg",
+    "/gallery/img18.jpg",
+    "/gallery/img4.jpg",
+    "/gallery/img5.jpg",
+    "/gallery/img6.jpg",
+    "/gallery/img19.jpg",
+    "/gallery/img1.jpg",
+    "/gallery/img20.jpg",
+  ][i],
   crop: [
     "50% 28%",
     "42% 52%",
@@ -53,28 +96,6 @@ const PHOTOS = Array.from({ length: 20 }, (_, i) => ({
     "brightness(.86) saturate(.91) sepia(.05)",
     "brightness(.92) saturate(.85)",
   ][i],
-  label: [
-    "Senja & Senyum",
-    "Dua Jiwa",
-    "Cahaya Sore",
-    "Kebun Mawar",
-    "Tawa Bersama",
-    "Pandangan Cinta",
-    "Di Tepi Pantai",
-    "Sebuah Janji",
-    "Berdua Saja",
-    "Ketenangan",
-    "Momen Kecil",
-    "Kasih Sayang",
-    "Hari Bahagia",
-    "Bersama Selalu",
-    "Kenangan Abadi",
-    "Perjalanan Cinta",
-    "Hangat Hati",
-    "Dua Dunia",
-    "Kisah Kita",
-    "Selamanya",
-  ][i],
 }));
 
 /* Mosaic layout: { cols:1|2, rows:1|2 } — 3-column grid */
@@ -82,27 +103,27 @@ const PHOTOS = Array.from({ length: 20 }, (_, i) => ({
 // 3-column grid, row unit = 140px on mobile, scales up on desktop
 // Carefully packed so NO cell is empty
 const PLACEMENTS: [number, number, number, number][] = [
-  // [colStart, rowStart, colSpan, rowSpan]
-  [1, 1, 2, 2], // 0  big  rows 1-2, cols 1-2
-  [3, 1, 1, 1], // 1  small row 1, col 3
-  [3, 2, 1, 1], // 2  small row 2, col 3
-  [1, 3, 1, 2], // 3  tall  rows 3-4, col 1
-  [2, 3, 2, 1], // 4  wide  row 3, cols 2-3
-  [2, 4, 1, 1], // 5  small row 4, col 2
-  [3, 4, 1, 1], // 6  small row 4, col 3
-  [1, 5, 2, 1], // 7  wide  row 5, cols 1-2
-  [3, 5, 1, 2], // 8  tall  rows 5-6, col 3
-  [1, 6, 1, 1], // 9  small row 6, col 1
-  [2, 6, 1, 1], // 10 small row 6, col 2
-  [1, 7, 1, 1], // 11 small row 7, col 1
-  [2, 7, 2, 2], // 12 big   rows 7-8, cols 2-3
-  [1, 8, 1, 1], // 13 small row 8, col 1
-  [1, 9, 3, 1], // 14 full  row 9, cols 1-3
-  [1, 10, 1, 2], // 15 tall  rows 10-11, col 1
-  [2, 10, 1, 1], // 16 small row 10, col 2
-  [3, 10, 1, 1], // 17 small row 10, col 3
-  [2, 11, 2, 1], // 18 wide  row 11, cols 2-3
-  [1, 12, 3, 1], // 19 full  row 12, cols 1-3
+  // [colStart, rowStart, colSpan, rowSpan]  — all portrait or square, no landscape
+  [1, 1, 2, 2], //  0  big 2×2    rows 1-2,   cols 1-2
+  [3, 1, 1, 2], //  1  tall 1×2   rows 1-2,   col 3
+  [1, 3, 1, 2], //  2  tall 1×2   rows 3-4,   col 1
+  [2, 3, 1, 1], //  3  small      row 3,      col 2
+  [3, 3, 1, 1], //  4  small      row 3,      col 3
+  [2, 4, 1, 1], //  5  small      row 4,      col 2
+  [3, 4, 1, 1], //  6  small      row 4,      col 3
+  [1, 5, 1, 1], //  7  small      row 5,      col 1
+  [2, 5, 1, 1], //  8  small      row 5,      col 2
+  [3, 5, 1, 2], //  9  tall 1×2   rows 5-6,   col 3
+  [1, 6, 1, 1], // 10  small      row 6,      col 1
+  [2, 6, 1, 1], // 11  small      row 6,      col 2
+  [1, 7, 1, 2], // 12  tall 1×2   rows 7-8,   col 1
+  [2, 7, 2, 2], // 13  big 2×2    rows 7-8,   cols 2-3
+  [1, 9, 2, 2], // 14  big 2×2    rows 9-10,  cols 1-2
+  [3, 9, 1, 2], // 15  tall 1×2   rows 9-10,  col 3
+  [1, 11, 1, 2], // 16  tall 1×2   rows 11-12, col 1
+  [2, 11, 1, 1], // 17  small      row 11,     col 2
+  [3, 11, 1, 2], // 18  tall 1×2   rows 11-12, col 3
+  [2, 12, 1, 1], // 19  small      row 12,     col 2
 ];
 
 /* ══════════════════════════════════════════
@@ -401,6 +422,7 @@ export default function GalleryPage() {
         .gal-hero-txt {
           position: absolute; bottom: 0; left: 0; right: 0;
           padding: clamp(16px,4vw,36px) clamp(16px,4vw,36px);
+          display: flex; align-items: flex-end; justify-content: space-between;
         }
         .gal-hero-n {
           font-family: 'Cormorant Garamond', serif;
@@ -700,9 +722,9 @@ export default function GalleryPage() {
           <header className={`gal-hdr${hdrVis ? "" : " up"}`}>
             <div className="gal-hdr-left">
               <p className="gal-eyebrow">Galeri Foto</p>
-              {/* <h1 className="gal-title">
+              <h1 className="gal-title">
                 Ais <em>&amp;</em> Tangkas
-              </h1> */}
+              </h1>
             </div>
             <button className="gal-back" onClick={() => router.push("/")}>
               <svg
@@ -726,9 +748,9 @@ export default function GalleryPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/couple.jpg" alt="" className="gal-hero-img" />
             <div className="gal-hero-over" />
-            <div className="gal-hero-txt flex flex-wrap gap-12 items-end justify-between">
+            <div className="gal-hero-txt">
               <p className="gal-hero-n">
-                Ais <em>&amp;</em> Tangkas
+                20<sup>foto</sup>
               </p>
               <p className="gal-hero-sub">
                 Setiap gambar menyimpan
